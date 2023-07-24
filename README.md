@@ -18,7 +18,7 @@ features of this action are:
   and reduce noise by tracking changed files between commits and the base of the
   pull request.
 - **"Light" model for summary**: Designed to be used with a "light"
-  summarization model (e.g. `gpt-3.5-turbo`) and a "heavy" review model (e.g.
+  summarization model (e.g. `gpt35`) and a "heavy" review model (e.g.
   `gpt-4`). _For best results, use `gpt-4` as the "heavy" model, as thorough
   code review needs strong reasoning abilities._
 - **Chat with bot**: Supports conversation with the bot in the context of lines
@@ -115,7 +115,7 @@ To ignore a PR, add the following keyword in the PR description:
   OpenAI API if you have multiple. Please add this key to your GitHub Action
   secrets.
 
-### Models: `gpt-4` and `gpt-3.5-turbo`
+### Models: `gpt-4` and `gpt35`
 
 We use `gpt-3.5-turbo` for lighter tasks such as summarizing the
 changes (`openai_light_model` in configuration) and `gpt-4` for more complex
