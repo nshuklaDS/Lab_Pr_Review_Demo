@@ -117,13 +117,13 @@ To ignore a PR, add the following keyword in the PR description:
 
 ### Models: `gpt-4` and `gpt-3.5-turbo`
 
-At Palo IT, we use `gpt-3.5-turbo` for lighter tasks such as summarizing the
+We use `gpt-3.5-turbo` for lighter tasks such as summarizing the
 changes (`openai_light_model` in configuration) and `gpt-4` for more complex
 review and commenting tasks (`openai_heavy_model` in configuration).
 
 Costs: `gpt-3.5-turbo` is dirt cheap. `gpt-4` is orders of magnitude more
 expensive, but the results are vastly superior. We are typically spending $20 a
-day for a 20 developer team with `gpt-4` based review and commenting.
+day for a 20 developer team with `gpt-4` based review and commenting. (not available yet in Azure Open AI for PaloIT)
 
 ### Prompts & Configuration
 

@@ -3,7 +3,7 @@ description: 'OpenAI ChatGPT based PR Reviewer and Summarizer'
 branding:
   icon: 'aperture'
   color: 'orange'
-author: 'Pao IT Singapore.'
+author: 'Palo IT Singapore.'
 inputs:
   debug:
     required: false
@@ -33,8 +33,49 @@ inputs:
       - https://github.com/isaacs/minimatch
     default: |
       !dist/**
+      !**/*.app
+      !**/*.bin
+      !**/*.bz2
+      !**/*.class
+      !**/*.db
+      !**/*.csv
+      !**/*.tsv
+      !**/*.dat
+      !**/*.dll
+      !**/*.dylib
+      !**/*.egg
+      !**/*.glif
+      !**/*.gz
+      !**/*.xz
+      !**/*.zip
+      !**/*.zst
+      !**/*.ico
+      !**/*.jar
+      !**/*.tar
+      !**/*.war
+      !**/*.lo
+      !**/*.log
+      !**/*.mp3
+      !**/*.mp4
+      !**/*.nar
+      !**/*.o
+      !**/*.ogg
+      !**/*.otf
+      !**/*.p
+      !**/*.pdf
+      !**/*.pkl
+      !**/*.pickle
+      !**/*.pyc
+      !**/*.pyd
+      !**/*.pyo
+      !**/*.rkt
+      !**/*.so
+      !**/*.ss
+      !**/*.eot
+      !**/*.exe
       !**/*.pb.go
       !**/*.lock
+      !**/*.ttf
       !**/*.yaml
       !**/*.yml
       !**/*.cfg
@@ -46,10 +87,17 @@ inputs:
       !**/*.json
       !**/*.mmd
       !**/*.svg
+      !**/*.jpeg
+      !**/*.jpg
       !**/*.png
+      !**/*.gif
+      !**/*.webm
+      !**/*.woff
+      !**/*.woff2
       !**/*.dot
       !**/*.md5sum
       !**/*.wasm
+      !**/*.snap
       !**/gen/**
       !**/_gen/**
       !**/generated/**
@@ -78,7 +126,7 @@ inputs:
   openai_model_temperature:
     required: false
     description: 'Temperature for GPT model'
-    default: '0.0'
+    default: '0.05'
   openai_retries:
     required: false
     description:
