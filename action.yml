@@ -113,7 +113,7 @@ inputs:
   openai_base_url:
     required: false
     description: 'The url of the openai api interface.'
-    default: 'https://api.openai.com/v1'
+    default: 'https://palo-openai.openai.azure.com/openai/deployments/gpt35/chat/completions?api-version=2023-03-15-preview'
   openai_light_model:
     required: false
     description:
