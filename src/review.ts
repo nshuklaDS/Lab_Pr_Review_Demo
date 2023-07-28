@@ -22,7 +22,7 @@ import {getTokenCount} from './tokenizer'
 const context = github_context
 const repo = context.repo
 
-const ignoreKeyword = '@openai: ignore'
+const ignoreKeyword = '@paloAI: ignore'
 
 export const codeReview = async (
   lightBot: Bot,
@@ -406,16 +406,16 @@ ${inputs.shortSummary}
 ${SHORT_SUMMARY_END_TAG}
 ---
 
-### Chat with 🤖 OpenAI Bot (\`@openai\`)
+### Chat with 🤖 OpenAI Bot (\`@paloAI\`)
 - Reply on review comments left by this bot to ask follow-up questions. A review comment is a comment on a diff or a file.
-- Invite the bot into a review comment chain by tagging \`@openai\` in a reply.
+- Invite the bot into a review comment chain by tagging \`@paloAI\` in a reply.
 
 ### Code suggestions
 - The bot may make code suggestions, but please review them carefully before committing since the line number ranges may be misaligned. 
 - You can edit the comment made by the bot and manually tweak the suggestion if it is slightly off.
 
 ### Ignoring further reviews
-- Type \`@openai: ignore\` anywhere in the PR description to ignore further reviews from the bot.
+- Type \`@paloAI: ignore\` anywhere in the PR description to ignore further reviews from the bot.
 
 ---
 
