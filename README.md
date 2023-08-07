@@ -4,7 +4,7 @@
 
 ## Overview
 
-This [OpenAI ChatGPT-based](https://platform.openai.com/docs/guides/chat) GitHub
+This Azure Open AI GitHub
 Action provides a summary, release notes and review of pull requests. The unique
 features of this action are:
 
@@ -14,9 +14,6 @@ features of this action are:
 - **Continuous, incremental reviews**: Reviews are performed on each commit
   within a pull request, rather than a one-time review on the entire pull
   request.
-- **Cost-effective and reduced noise**: Incremental reviews save on OpenAI costs
-  and reduce noise by tracking changed files between commits and the base of the
-  pull request.
 - **Chat with bot**: Supports conversation with the bot in the context of lines
   of code or entire files, useful for providing context, generating test cases,
   and reducing code complexity.
@@ -107,15 +104,14 @@ To ignore a PR, add the following keyword in the PR description:
 - `OPENAI_API_KEY`: use this to authenticate with OpenAI API. You can get one by asking the lab . Please add this key to
   your GitHub Action secrets.
 
-### Models: `gpt-4` and `gpt35`
+### Models: `gpt4` and `gpt35`
 
-We use `gpt-3.5-turbo` for lighter tasks such as summarizing the
-changes (`openai_light_model` in configuration) and `gpt-4` for more complex
+We use `gpt35` for lighter tasks such as summarizing the
+changes (`openai_light_model` in configuration) and `gpt4` for more complex
 review and commenting tasks (`openai_heavy_model` in configuration).
 
-Costs: `gpt-3.5-turbo` is dirt cheap. `gpt-4` is orders of magnitude more
-expensive, but the results are vastly superior. We are typically spending $20 a
-day for a 20 developer team with `gpt-4` based review and commenting. (not available yet in Azure Open AI for PaloIT)
+Costs: `gpt35` is dirt cheap. `gpt-4` is orders of magnitude more
+expensive, but the results are vastly superior.
 
 ### Prompts & Configuration
 
@@ -202,7 +198,7 @@ const url = `${this._apiBaseUrl}/chat/completions`;
 by
 
 ``` javascript
-const url = `${this._apiBaseUrl}/chat/completions`;
+const url = `${this._apiBaseUrl}`;
 ```
 
 and 
@@ -232,23 +228,17 @@ maxModelTokens = 4e3,
 by 
 ``` javascript
 maxModelTokens = 8e3,
-``` 
+```
+
+[Reason](https://github.com/transitive-bullshit/chatgpt-api/issues/352#issuecomment-1506801907) : the github action was originaly written for using OpenAI directly and not Azure OpenAI
 ## FAQs
 
 
 
-### Inspect the messages between OpenAI server
-
-Set `debug: true` in the workflow file to enable debug mode, which will show the
-messages
-
 ### Disclaimer
 
-- Your code (files, diff, PR title/description) will be sent to our Azure OpenAI servers
-  for processing. Please check with your compliance team before using this on
-  your private code repositories.
 - Forked from [here](https://github.com/coderabbitai/ai-pr-reviewer/)
 
 ### TO be done
 
-Add GPT4 access when we get it
+Add WizardCorder when we have GPI Access
