@@ -17,10 +17,6 @@ features of this action are:
 - **Cost-effective and reduced noise**: Incremental reviews save on OpenAI costs
   and reduce noise by tracking changed files between commits and the base of the
   pull request.
-- **"Light" model for summary**: Designed to be used with a "light"
-  summarization model (e.g. `gpt35`) and a "heavy" review model (e.g.
-  `gpt-4`). _For best results, use `gpt-4` as the "heavy" model, as thorough
-  code review needs strong reasoning abilities._
 - **Chat with bot**: Supports conversation with the bot in the context of lines
   of code or entire files, useful for providing context, generating test cases,
   and reducing code complexity.
@@ -108,12 +104,8 @@ To ignore a PR, add the following keyword in the PR description:
 
 - `GITHUB_TOKEN`: This should already be available to the GitHub Action
   environment. This is used to add comments to the pull request.
-- `OPENAI_API_KEY`: use this to authenticate with OpenAI API. You can get one
-  [here](https://platform.openai.com/account/api-keys). Please add this key to
+- `OPENAI_API_KEY`: use this to authenticate with OpenAI API. You can get one by asking the lab . Please add this key to
   your GitHub Action secrets.
-- `OPENAI_API_ORG`: (optional) use this to use the specified organization with
-  OpenAI API if you have multiple. Please add this key to your GitHub Action
-  secrets.
 
 ### Models: `gpt-4` and `gpt35`
 
@@ -190,51 +182,60 @@ Build the typescript and package it for distribution
 $ npm run build && npm run package
 ```
 
-## FAQs
+After need to remove in build.ts: 
 
-### Review pull requests from forks
+``` javascript
+const CHATGPT_MODEL = 'gpt-3.5-turbo'
 
-GitHub Actions limits the access of secrets from forked repositories. To enable
-this feature, you need to use the `pull_request_target` event instead of
-`pull_request` in your workflow file. Note that with `pull_request_target`, you
-need extra configuration to ensure checking out the right commit:
+model: CHATGPT_MODEL,
 
-```yaml
-name: Code Review
+model: this._model,
 
-permissions:
-  contents: read
-  pull-requests: write
+model: openaiOptions.model
 
-on:
-  pull_request_target:
-    types: [opened, synchronize, reopened]
-  pull_request_review_comment:
-    types: [created]
 
-concurrency:
-  group:
-    ${{ github.repository }}-${{ github.event.number || github.head_ref ||
-    github.sha }}-${{ github.workflow }}-${{ github.event_name ==
-    'pull_request_review_comment' && 'pr_comment' || 'pr' }}
-  cancel-in-progress: ${{ github.event_name != 'pull_request_review_comment' }}
+```
+And replace : 
+```javascript
+const url = `${this._apiBaseUrl}/chat/completions`; 
+```
+by
 
-jobs:
-  review:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: paloitsingapore/lab-pr-review@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        with:
-          debug: false
-          review_simple_changes: false
-          review_comment_lgtm: false
+``` javascript
+const url = `${this._apiBaseUrl}/chat/completions`;
 ```
 
-See also:
-https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request_target
+and 
+``` javascript
+Authorization: `Bearer ${this._apiKey}`
+
+``` 
+by 
+``` javascript
+'api-key': `${this._apiKey}`
+``` 
+
+and 
+
+``` javascript
+apiBaseUrl = "https://api.openai.com/v1",
+``` 
+by 
+``` javascript
+apiBaseUrl = "https://palo-openai.openai.azure.com/openai/deployments/gpt35/chat/completions?api-version=2023-03-15-preview",
+``` 
+
+and 
+``` javascript
+maxModelTokens = 4e3,
+``` 
+by 
+``` javascript
+maxModelTokens = 8e3,
+``` 
+## FAQs
+
+
 
 ### Inspect the messages between OpenAI server
 
@@ -243,11 +244,11 @@ messages
 
 ### Disclaimer
 
-- Your code (files, diff, PR title/description) will be sent to OpenAI's servers
+- Your code (files, diff, PR title/description) will be sent to our Azure OpenAI servers
   for processing. Please check with your compliance team before using this on
   your private code repositories.
-- OpenAI's API is used instead of ChatGPT session on their portal. OpenAI API
-  has a
-  [more conservative data usage policy](https://openai.com/policies/api-data-usage-policies)
-  compared to their ChatGPT offering.
-- This action is not affiliated with OpenAI.
+- Forked from [here](https://github.com/coderabbitai/ai-pr-reviewer/)
+
+### TO be done
+
+Add GPT4 access when we get it
