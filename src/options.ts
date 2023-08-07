@@ -20,7 +20,7 @@ export class Options {
   lightTokenLimits: TokenLimits
   heavyTokenLimits: TokenLimits
   apiBaseUrl: string
-
+  
   constructor(
     debug: boolean,
     disableReview: boolean,
@@ -56,6 +56,11 @@ export class Options {
     this.heavyTokenLimits = new TokenLimits(openaiHeavyModel)
     this.apiBaseUrl = apiBaseUrl
   }
+  setApiBaseUrl(url: string) {
+    this.apiBaseUrl = url;
+}
+
+
 
   // print all options using core.info
   print(): void {

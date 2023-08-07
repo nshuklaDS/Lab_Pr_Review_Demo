@@ -12,6 +12,9 @@ import {codeReview} from './review'
 import {handleReviewComment} from './review-comment'
 
 async function run(): Promise<void> {
+  const lightModelURL = getInput('openai_light_model_url');
+  const heavyModelURL = getInput('openai_heavy_model_url');
+
   const options: Options = new Options(
     getBooleanInput('debug'),
     getBooleanInput('disable_review'),
@@ -42,6 +45,7 @@ async function run(): Promise<void> {
 
   let lightBot: Bot | null = null
   try {
+    options.setApiBaseUrl(lightModelURL);
     lightBot = new Bot(
       options,
       new OpenAIOptions(options.openaiLightModel, options.lightTokenLimits)
@@ -55,6 +59,7 @@ async function run(): Promise<void> {
 
   let heavyBot: Bot | null = null
   try {
+    options.setApiBaseUrl(heavyModelURL);
     heavyBot = new Bot(
       options,
       new OpenAIOptions(options.openaiHeavyModel, options.heavyTokenLimits)
