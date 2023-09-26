@@ -14,9 +14,6 @@ features of this action are:
 - **Continuous, incremental reviews**: Reviews are performed on each commit
   within a pull request, rather than a one-time review on the entire pull
   request.
-- **Chat with bot**: Supports conversation with the bot in the context of lines
-  of code or entire files, useful for providing context, generating test cases,
-  and reducing code complexity.
 - **Smart review skipping**: By default, skips in-depth review for simple
   changes (e.g. typo fixes) and when changes look good for the most part. It can
   be disabled by setting `review_simple_changes` and `review_comment_lgtm` to
@@ -29,7 +26,8 @@ features of this action are:
 ## Usage
 
 Add the below file to your repository at
-`.github/workflows/openai-pr-reviewer.yml`
+`.github/workflows/openai-pr-reviewer.yml` and fill openai_light_model_url and openai_heavy_model using the provided URL
+
 
 ```yaml
 name: Code Review
@@ -62,6 +60,8 @@ jobs:
           debug: false
           review_simple_changes: false
           review_comment_lgtm: false
+          openai_light_model_url:
+          openai_heavy_model:
 ```
 
 ### Conversation with OpenAI
@@ -110,7 +110,7 @@ We use `gpt35` for lighter tasks such as summarizing the
 changes (`openai_light_model` in configuration) and `gpt4` for more complex
 review and commenting tasks (`openai_heavy_model` in configuration).
 
-Costs: `gpt35` is dirt cheap. `gpt-4` is orders of magnitude more
+Costs: `gpt35` is cheap. `gpt-4` is orders of magnitude more
 expensive, but the results are vastly superior.
 
 ### Prompts & Configuration
