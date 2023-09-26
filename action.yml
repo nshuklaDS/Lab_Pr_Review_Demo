@@ -110,10 +110,6 @@ inputs:
     required: false
     description: 'Disable release notes'
     default: 'false'
-  openai_base_url:
-    required: false
-    description: 'The url of the openai api interface.'
-    default: ''
   openai_light_model_url:
     required: false
     description: 'The url of the openai api interface for light model'
@@ -122,7 +118,6 @@ inputs:
     required: false
     description: 'The url of the openai api interface for GPT4.'
     default: 'https://palo-sg-gpt4.openai.azure.com/openai/deployments/gpt4/chat/completions?api-version=2023-03-15-preview'
-
   openai_light_model:
     required: false
     description:
