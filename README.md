@@ -26,8 +26,8 @@ features of this action are:
 ## Usage
 
 Add the below file to your repository at
-`.github/workflows/openai-pr-reviewer.yml` and fill `openai_light_model_url` (summary using GPT3.5) and `openai_heavy_model` (improve code using GPT4) using the provided Azure Open AI URL.
-If you don't have access to GPT4, you can put the same URL for `openai_light_model_url` and `openai_heavy_model`, the suggested improvements will surely be worse.
+`.github/workflows/openai-pr-reviewer.yml` and fill `openai_light_model_url` (summary using GPT3.5) and `openai_heavy_model_url` (improve code using GPT4) using the provided Azure Open AI URL.
+If you don't have access to GPT4, you can put the same URL for `openai_light_model_url` and `openai_heavy_model_url`, the suggested improvements will surely be worse.
 
 
 ```yaml
@@ -62,7 +62,7 @@ jobs:
           review_simple_changes: false
           review_comment_lgtm: false
           openai_light_model_url:
-          openai_heavy_model:
+          openai_heavy_model_url:
 ```
 
 ### Conversation with OpenAI
