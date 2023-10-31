@@ -118,6 +118,10 @@ inputs:
     required: false
     description: 'The url of the openai api interface for GPT4.'
     default: 'https://palo-sg-gpt4.openai.azure.com/openai/deployments/gpt4/chat/completions?api-version=2023-03-15-preview'
+  openai_base_url:
+    required: false
+    description: 'The url of the azure openai api interface.'
+    default: 'https://pr-review-demo1.openai.azure.com/openai/deployments/gpt4_pr_review/chat/completions?api-version=2023-07-01-preview'
   openai_light_model:
     required: false
     description:
