@@ -36,7 +36,7 @@ export class Options {
     openaiRetries = '3',
     openaiTimeoutMS = '120000',
     openaiConcurrencyLimit = '4',
-    apiBaseUrl = 'https://palo-openai.openai.azure.com/openai/deployments/gpt35/chat/completions?api-version=2023-03-15-preview'
+    apiBaseUrl = 'None'
   ) {
     this.debug = debug
     this.disableReview = disableReview
